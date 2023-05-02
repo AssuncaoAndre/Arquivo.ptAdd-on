@@ -22,8 +22,6 @@ function time_stamp_to_data(inputDateTime)
     return outputDateTime;
 }
 
-
-
 function get_month(inputDateTime)
 {
     const month = parseInt(inputDateTime.substring(4, 6));
@@ -42,18 +40,29 @@ const url = window.location.href;
 
 let searchUrl = API_SEARCH_URL.concat(url).concat("&maxItems=2000")
 searchUrl = encodeURI(searchUrl)
-let super_clean=[]
+
+//default loading state
+let super_clean="loading"
 chrome.storage.sync.set({"clean_struct":super_clean});
 
-fetch(searchUrl) .then(response => console.log(response.status) || response) // output the status and return response
-.then(response => response.text()) // send response body to next then chain
+
+//HTTP request to arquivo.pt API
+fetch(searchUrl) .then(response => console.log(response.status) || response) 
+.then(response => response.text()) 
 .then(body => {
     let json = JSON.parse(body)
     let clean_struct = []
+    if(json["response_items"].length == 0)
+    {
+        chrome.storage.sync.set({"clean_struct":clean_struct});
+        super_clean=clean_struct
+        return
+    }
 
     let current_month = get_month(json["response_items"][0].tstamp)
     let current_year = get_year(json["response_items"][0].tstamp)
-    console.log(json)
+    
+    //display at most 1 result per month
     for (let i = 0; i < json["response_items"].length; i++)
     {
         if(get_year(json["response_items"][i].tstamp) < current_year)
@@ -74,7 +83,7 @@ fetch(searchUrl) .then(response => console.log(response.status) || response) // 
 
 
 document.addEventListener("visibilitychange", () => {
-    console.log(document.hidden);
+    //when user activate the tab again, refresh the storage so that it wont display the information from other tabs
     if(!document.hidden)
     {
         chrome.storage.sync.set({"clean_struct":super_clean});
