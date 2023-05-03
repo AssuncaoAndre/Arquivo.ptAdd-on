@@ -38,8 +38,9 @@ var API_SEARCH_URL = 'https://arquivo.pt/textsearch?versionHistory=';
 
 const url = window.location.href;
 
-let searchUrl = API_SEARCH_URL.concat(url).concat("&maxItems=2000")
+let searchUrl = API_SEARCH_URL.concat(url).concat("&maxItems=500")
 searchUrl = encodeURI(searchUrl)
+console.log(searchUrl)
 
 //default loading state
 let super_clean="loading"
