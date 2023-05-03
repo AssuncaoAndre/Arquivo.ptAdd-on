@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Arquivo.pt",
-    "description": "Extensão de browser para o arquivo.pt",
+    "description": "Add-on para o arquivo.pt",
     "version": "1.0",
     "action": {
       "default_popup": "popup.html",
