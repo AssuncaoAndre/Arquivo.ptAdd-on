@@ -88,7 +88,7 @@ document.addEventListener("visibilitychange", () => {
     if(!document.hidden)
     {
         chrome.storage.sync.set({"clean_struct":super_clean});
-        console.log(super_clean)
+        //console.log(super_clean)
     }
   });
 
