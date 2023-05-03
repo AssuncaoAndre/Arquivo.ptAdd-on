@@ -69,6 +69,7 @@ fetch(searchUrl) .then(response => console.log(response.status) || response)
         {
             clean_struct.push({"date":time_stamp_to_data(json["response_items"][i].tstamp),"link":json["response_items"][i].linkToArchive})
             current_year = get_year(json["response_items"][i].tstamp)
+            current_month = get_month(json["response_items"][i].tstamp)
         }
         else if(get_month(json["response_items"][i].tstamp) < current_month)
         {
