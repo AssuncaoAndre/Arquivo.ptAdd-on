@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "Arquivo.pt",
-    "description": "Add-on para o arquivo.pt",
+    "name": "Arquivo.pt - Passado Instantâneo",
+    "description": "Add-on para o arquivo.pt para explorar arquivos históricos num clique",
     "version": "1.0",
     "action": {
       "default_popup": "popup.html",
